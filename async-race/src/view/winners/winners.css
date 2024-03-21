@@ -1,0 +1,7 @@
+.winners {
+    width: 100%;
+}
+
+.winners-title {
+    color: var(--red);
+}

@@ -1,0 +1,29 @@
+#root {
+    position: relative;
+    overflow-x: hidden;
+}
+
+#header {
+    max-width: 50%;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+#main {
+    width: 90%;
+    height: 500px;
+    border: 2px solid salmon;
+}
+
+.header-btn {
+    color: white;
+    background-color: var(--green);
+}
+
+.header-btn-passive {
+    color: white;
+    background-color: var(--red);
+}
