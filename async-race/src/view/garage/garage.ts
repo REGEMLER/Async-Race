@@ -2,6 +2,12 @@ import './garage.css';
 import { getCars } from '../../controllers/getCars';
 import { createCar } from '../cars/createCar';
 
+interface Icar {
+    id: number;
+    name: string;
+    color: string;
+}
+
 function createFormFuild(): HTMLDivElement {
     const form = document.createElement('div');
     form.classList.add('form');
@@ -25,11 +31,10 @@ function createFormFuild(): HTMLDivElement {
     return form;
 }
 
-async function createTitle(): Promise<HTMLHeadingElement> {
+function createTitle(totalCount: string | null): HTMLHeadingElement {
     const title = document.createElement('h1');
     title.classList.add('title');
     title.classList.add('garage-title');
-    const totalCount = await getCars();
     title.textContent = `Garage ${totalCount}`;
     return title;
 }
@@ -47,20 +52,18 @@ export async function createGaragePage() {
         main.innerHTML = '';
         const wrapper = document.createElement('div');
         wrapper.classList.add('garage');
+        const { cars, totalCount } = await getCars();
         const form = createFormFuild();
-        const title = await createTitle();
+        const title = createTitle(totalCount);
         const subtitle = createSubtitle();
-        const car = createCar();
-        const car2 = createCar();
-        const car3 = createCar();
-        const car4 = createCar();
         wrapper.append(form);
         wrapper.append(title);
         wrapper.append(subtitle);
-        wrapper.append(car);
-        wrapper.append(car2);
-        wrapper.append(car3);
-        wrapper.append(car4);
+        cars.forEach((car: Icar) => {
+            console.log(car);
+            const carElement = createCar(car.name, car.color, car.id);
+            wrapper.append(carElement);
+        });
         main.append(wrapper);
     }
 }

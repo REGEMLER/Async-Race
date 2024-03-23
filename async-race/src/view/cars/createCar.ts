@@ -1,8 +1,9 @@
 import './cars.css';
 import { createCarImg } from './createCarImg';
 
-export function createCar(): HTMLDivElement {
+export function createCar(name: string, color: string, id: number): HTMLDivElement {
     const car = document.createElement('div');
+    car.id = id.toString();
     const flag = `<svg height="100px" width="100px" class="flag" version="1.1"" 
     viewBox="0 0 206.505 206.505" xml:space="preserve">
     <g>
@@ -14,12 +15,12 @@ export function createCar(): HTMLDivElement {
     </g>
 </svg>`;
     car.classList.add('car');
-    const carIMG = createCarImg('FF0000');
+    const carIMG = createCarImg(color);
     const inner = `
     <div class="line1">
         <button class="btn car-btn">Select</button>
         <button class="btn car-btn">Remove</button>
-        <h3 class="car-title">Tesla</h3>
+        <h3 class="car-title">${name}</h3>
     </div>
     <div class="line2">
         <button class="btn engine-btn">A</button>
