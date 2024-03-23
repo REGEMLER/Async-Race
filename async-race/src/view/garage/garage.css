@@ -5,3 +5,32 @@
 .garage-title {
     color: var(--green);
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+    margin: 1rem 0 1rem 1rem;
+}
+
+.form-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+#create,
+#update,
+#generate {
+    background-color: var(--green);
+}
+
+#race,
+#reset {
+    background-color: var(--red);
+}
+
+#generate {
+    width: 240px;
+}

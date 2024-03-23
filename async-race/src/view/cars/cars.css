@@ -1,0 +1,48 @@
+.car {
+    max-width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+.line1 {
+    max-width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.car-btn {
+    background-color: var(--green);
+}
+
+.car-title {
+    max-width: 90%;
+    font-size: 1.5rem;
+    color: var(--green);
+}
+
+.line2 {
+    max-width: 95%;
+    border-bottom: 2px dashed var(--red);
+    position: relative;
+}
+
+.engine-btn {
+    display: inline-block;
+    width: 50px;
+    margin-right: 10px;
+    background-color: var(--red);
+}
+
+.car-img {
+    position: absolute;
+    bottom: -15px;
+    left: 70px;
+}
+
+.flag {
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+}

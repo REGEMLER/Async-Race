@@ -41,7 +41,7 @@ body {
 
 .btn {
     display: block;
-    width: 200px;
+    width: 180px;
     margin: 20px auto;
     height: 45px;
     padding: 10px;
@@ -50,10 +50,40 @@ body {
     font-weight: 700;
     letter-spacing: 1px;
     text-align: center;
+    color: white;
     cursor: pointer;
     transition: all linear .5s;
 }
 
 .btn:active {
     transform: scale(0.95);
+}
+
+.input-text {
+    display: block;
+    max-width: 70%;
+    width: 250px;
+    height: 45px;
+    background-color: white;
+    font-size: 1.4rem;
+    color: var(--green);
+    transition: all linear .4s;
+}
+
+.input-text::placeholder {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 1.4rem;
+    color: gray;
+}
+
+.input-text:focus {
+    border-radius: 6px;
+    outline: 2px solid var(--green);
+}
+
+.input-color {
+    display: block;
+    width: 45px;
+    height: 45px;
 }
