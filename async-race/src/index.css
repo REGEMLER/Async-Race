@@ -26,7 +26,7 @@ body {
 
 .title {
     max-width: 90%;
-    margin: 30px auto; 
+    margin: 10px auto; 
     font-size: 2rem;
     text-align: center;
 }
@@ -42,7 +42,7 @@ body {
 .btn {
     display: block;
     width: 180px;
-    margin: 20px auto;
+    margin: 10px auto;
     height: 45px;
     padding: 10px;
     border-radius: 5px;
@@ -82,8 +82,19 @@ body {
     outline: 2px solid var(--green);
 }
 
+.input-text:disabled {
+    background-color: gray;
+}
+
 .input-color {
     display: block;
     width: 45px;
     height: 45px;
+}
+
+@media screen and (max-width: 928px){
+    .btn {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
 }

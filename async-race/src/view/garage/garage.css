@@ -31,6 +31,11 @@
     background-color: var(--red);
 }
 
+#update:disabled {
+    background-color: gray;
+    color: black;
+}
+
 #generate {
     width: 240px;
 }

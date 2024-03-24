@@ -1,6 +1,7 @@
 import './garage.css';
 import { getCars } from '../../controllers/getCars';
-import { createCar } from '../cars/createCar';
+import { addCar } from '../cars/addCar';
+import { onCreate } from '../../events/onCreate';
 
 interface Icar {
     id: number;
@@ -13,14 +14,14 @@ function createFormFuild(): HTMLDivElement {
     form.classList.add('form');
     const inner = `
         <div class="form-item">
-            <input type="text" class="input-text"/>
-            <input type="color" class="input-color"/>
+            <input type="text" class="input-text" id="createName"/>
+            <input type="color" class="input-color" id="createColor"/>
             <button class="btn" id="create">Create</button>
         </div>
         <div class="form-item">
-            <input type="text" class="input-text"/>
-            <input type="color" class="input-color"/>
-            <button class="btn" id="update">Update</button>
+            <input type="text" class="input-text" id="updateName" disabled/>
+            <input type="color" class="input-color" id="updateColor" disabled/>
+            <button class="btn" id="update" disabled>Update</button>
         </div>
         <div class="form-item">
             <button class="btn" id="race">Race</button>
@@ -61,9 +62,10 @@ export async function createGaragePage() {
         wrapper.append(subtitle);
         cars.forEach((car: Icar) => {
             console.log(car);
-            const carElement = createCar(car.name, car.color, car.id);
+            const carElement = addCar(car.name, car.color, car.id);
             wrapper.append(carElement);
         });
         main.append(wrapper);
+        onCreate();
     }
 }

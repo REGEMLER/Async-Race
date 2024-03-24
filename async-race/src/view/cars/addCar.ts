@@ -1,7 +1,9 @@
+import { onRemove } from '../../events/onRemove';
+import { onSelect } from '../../events/onSelect';
 import './cars.css';
 import { createCarImg } from './createCarImg';
 
-export function createCar(name: string, color: string, id: number): HTMLDivElement {
+export function addCar(name: string, color: string, id: number): HTMLDivElement {
     const car = document.createElement('div');
     car.id = id.toString();
     const flag = `<svg height="100px" width="100px" class="flag" version="1.1"" 
@@ -18,8 +20,8 @@ export function createCar(name: string, color: string, id: number): HTMLDivEleme
     const carIMG = createCarImg(color);
     const inner = `
     <div class="line1">
-        <button class="btn car-btn">Select</button>
-        <button class="btn car-btn">Remove</button>
+        <button class="btn car-btn select">Select</button>
+        <button class="btn car-btn remove">Remove</button>
         <h3 class="car-title">${name}</h3>
     </div>
     <div class="line2">
@@ -30,5 +32,9 @@ export function createCar(name: string, color: string, id: number): HTMLDivEleme
     </div>
     `;
     car.innerHTML = inner;
+    const removeBtn = car.querySelector('.remove');
+    if (removeBtn instanceof HTMLButtonElement) onRemove(removeBtn, id);
+    const selectBtn = car.querySelector('.select');
+    if (selectBtn instanceof HTMLButtonElement) onSelect(selectBtn, id);
     return car;
 }

@@ -1,5 +1,5 @@
-import { onGarage } from '../../router/onGarage';
-import { onWinners } from '../../router/onWinners';
+import { onGarage } from '../../events/onGarage';
+import { onWinners } from '../../events/onWinners';
 import { createGaragePage } from '../garage/garage';
 import './root.css';
 
