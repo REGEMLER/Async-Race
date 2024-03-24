@@ -17,7 +17,7 @@ export function addCar(name: string, color: string, id: number): HTMLDivElement 
     </g>
 </svg>`;
     car.classList.add('car');
-    const carIMG = createCarImg(color);
+    const carIMG = createCarImg(color, '200', '80', 'car-img');
     const inner = `
     <div class="line1">
         <button class="btn car-btn select">Select</button>

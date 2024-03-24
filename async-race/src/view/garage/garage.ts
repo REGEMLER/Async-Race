@@ -41,7 +41,7 @@ function createTitle(totalCount: string | null): HTMLHeadingElement {
     const title = document.createElement('h1');
     title.classList.add('title');
     title.classList.add('garage-title');
-    title.textContent = `Garage ${totalCount}`;
+    title.textContent = `Garage (${totalCount})`;
     return title;
 }
 

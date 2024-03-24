@@ -1,5 +1,5 @@
-export function createCarImg(color: string) {
-    const car = `<svg class="car-img" width="200px" height="80px" viewBox="0 0 24 24">
+export function createCarImg(color: string, width: string, height: string, className: string) {
+    const car = `<svg class="${className}" width="${width}px" height="${height}px" viewBox="0 0 24 24">
     <defs><style>.cls-1{fill:black;stroke:#020202;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs>
     <circle class="cls-1" cx="6.27" cy="15.84" r="1.91"/>
     <circle class="cls-1" cx="17.73" cy="15.84" r="1.91"/>
