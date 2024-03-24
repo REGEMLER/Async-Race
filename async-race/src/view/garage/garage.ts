@@ -2,6 +2,10 @@ import './garage.css';
 import { getCars } from '../../controllers/getCars';
 import { addCar } from '../cars/addCar';
 import { onCreate } from '../../events/onCreate';
+import { createFooter } from '../root/root';
+import { getGaragePage } from '../../controllers/garagePages';
+import { onPrev } from '../../events/onPrev';
+import { onNext } from '../../events/onNext';
 
 interface Icar {
     id: number;
@@ -41,9 +45,10 @@ function createTitle(totalCount: string | null): HTMLHeadingElement {
 }
 
 function createSubtitle(): HTMLHeadingElement {
+    const page = getGaragePage();
     const subtitle = document.createElement('h2');
     subtitle.classList.add('subtitle');
-    subtitle.textContent = 'Page #1';
+    subtitle.textContent = `Page #${page}`;
     return subtitle;
 }
 
@@ -57,6 +62,7 @@ export async function createGaragePage() {
         const form = createFormFuild();
         const title = createTitle(totalCount);
         const subtitle = createSubtitle();
+        const footer = await createFooter();
         wrapper.append(form);
         wrapper.append(title);
         wrapper.append(subtitle);
@@ -65,7 +71,10 @@ export async function createGaragePage() {
             const carElement = addCar(car.name, car.color, car.id);
             wrapper.append(carElement);
         });
+        wrapper.append(footer);
         main.append(wrapper);
         onCreate();
+        onPrev();
+        onNext();
     }
 }
