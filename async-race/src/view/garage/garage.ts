@@ -6,6 +6,7 @@ import { createFooter } from '../root/root';
 import { getGaragePage } from '../../controllers/garagePages';
 import { onPrev } from '../../events/onPrev';
 import { onNext } from '../../events/onNext';
+import { onGenerate } from '../../events/onGenerate';
 
 interface Icar {
     id: number;
@@ -76,5 +77,6 @@ export async function createGaragePage() {
         onCreate();
         onPrev();
         onNext();
+        onGenerate();
     }
 }
