@@ -1,5 +1,6 @@
 import { onRemove } from '../../events/onRemove';
 import { onSelect } from '../../events/onSelect';
+import { onRun } from '../../events/onRun';
 import './cars.css';
 import { createCarImg } from './createCarImg';
 
@@ -17,7 +18,7 @@ export function addCar(name: string, color: string, id: number): HTMLDivElement 
     </g>
 </svg>`;
     car.classList.add('car');
-    const carIMG = createCarImg(color, '200', '80', 'car-img');
+    const carIMG: string = createCarImg(color, '200', '80', 'car-img');
     const inner = `
     <div class="line1">
         <button class="btn car-btn select">Select</button>
@@ -25,16 +26,22 @@ export function addCar(name: string, color: string, id: number): HTMLDivElement 
         <h3 class="car-title">${name}</h3>
     </div>
     <div class="line2">
-        <button class="btn engine-btn">A</button>
-        <button class="btn engine-btn">B</button>
+        <button class="btn engine-btn start">A</button>
+        <button class="btn engine-btn stop">B</button>
         ${carIMG};
         ${flag};
     </div>
     `;
     car.innerHTML = inner;
+    const carSVG = car.querySelector('.car-img');
     const removeBtn = car.querySelector('.remove');
     if (removeBtn instanceof HTMLButtonElement) onRemove(removeBtn, id);
     const selectBtn = car.querySelector('.select');
     if (selectBtn instanceof HTMLButtonElement) onSelect(selectBtn, id);
+    const startBtn = car.querySelector('.start');
+    if (startBtn instanceof HTMLButtonElement && carSVG instanceof SVGSVGElement)
+        onRun(startBtn, id, 'started', carSVG);
+    const stopBtn = car.querySelector('.stop');
+    if (stopBtn instanceof HTMLButtonElement && carSVG instanceof SVGSVGElement) onRun(stopBtn, id, 'stopped', carSVG);
     return car;
 }

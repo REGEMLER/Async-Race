@@ -36,10 +36,16 @@
     background-color: var(--red);
 }
 
+.engine-btn:disabled {
+    background-color: gray;
+    color:  black;
+}
+
 .car-img {
     position: absolute;
     bottom: -15px;
     left: 70px;
+    transition: all linear .5s;
 }
 
 .flag {
@@ -47,3 +53,15 @@
     bottom: 0;
     right: 5px;
 }
+
+/* @media screen and (max-width: 950px){
+    .car-img {
+        left: 10%;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .car-img {
+        left: 15%;
+    }
+} */
