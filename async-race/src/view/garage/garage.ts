@@ -7,6 +7,8 @@ import { getGaragePage } from '../../controllers/garagePages';
 import { onPrev } from '../../events/onPrev';
 import { onNext } from '../../events/onNext';
 import { onGenerate } from '../../events/onGenerate';
+import { onRace } from '../../events/onRace';
+import { onReset } from '../../events/onReset';
 
 interface Icar {
     id: number;
@@ -78,5 +80,7 @@ export async function createGaragePage() {
         onPrev();
         onNext();
         onGenerate();
+        onRace();
+        onReset();
     }
 }

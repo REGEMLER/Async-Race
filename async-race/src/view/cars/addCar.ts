@@ -1,6 +1,6 @@
 import { onRemove } from '../../events/onRemove';
 import { onSelect } from '../../events/onSelect';
-import { onRun } from '../../events/onRun';
+import { onStart, onStop } from '../../events/onRun';
 import './cars.css';
 import { createCarImg } from './createCarImg';
 
@@ -27,21 +27,17 @@ export function addCar(name: string, color: string, id: number): HTMLDivElement 
     </div>
     <div class="line2">
         <button class="btn engine-btn start">A</button>
-        <button class="btn engine-btn stop">B</button>
+        <button class="btn engine-btn stop" disabled>B</button>
         ${carIMG};
         ${flag};
     </div>
     `;
     car.innerHTML = inner;
-    const carSVG = car.querySelector('.car-img');
     const removeBtn = car.querySelector('.remove');
     if (removeBtn instanceof HTMLButtonElement) onRemove(removeBtn, id);
     const selectBtn = car.querySelector('.select');
     if (selectBtn instanceof HTMLButtonElement) onSelect(selectBtn, id);
-    const startBtn = car.querySelector('.start');
-    if (startBtn instanceof HTMLButtonElement && carSVG instanceof SVGSVGElement)
-        onRun(startBtn, id, 'started', carSVG);
-    const stopBtn = car.querySelector('.stop');
-    if (stopBtn instanceof HTMLButtonElement && carSVG instanceof SVGSVGElement) onRun(stopBtn, id, 'stopped', carSVG);
+    onStart(car);
+    onStop(car);
     return car;
 }

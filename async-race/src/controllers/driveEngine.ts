@@ -12,7 +12,6 @@ export async function driveEngine(id: number): Promise<boolean> {
     }
     if (response.status === 200) {
         const result: iResult = await response.json();
-        console.log(result);
         return result.success;
     }
     return false;

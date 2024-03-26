@@ -45,32 +45,59 @@ function animationBack(car: SVGSVGElement, coordsCar: number): void {
     car.animate(frames, config);
 }
 
-export async function run(btn: HTMLButtonElement, id: number, status: 'started' | 'stopped', car: SVGSVGElement) {
+export async function start(car: HTMLDivElement) {
+    const btnStart: HTMLButtonElement = car.querySelector(`.start`) as HTMLButtonElement;
+    const btnStop: HTMLButtonElement = car.querySelector(`.stop`) as HTMLButtonElement;
+    const carIMG: SVGSVGElement = car.querySelector('.car-img') as SVGSVGElement;
+    const id = Number(car.id);
+    const flag = document.querySelector('.flag') as HTMLElement;
+    const coordsFlag = flag.getBoundingClientRect();
+    const flagEnd = coordsFlag.x - coordsFlag.width;
+    btnStart.disabled = true;
+    btnStop.disabled = false;
+    const result = await runEngine(id, 'started');
+    if (result) {
+        const time = result.distance / result.velocity;
+        const animation = animationForward(carIMG, time, flagEnd);
+        const isDrive = await driveEngine(id);
+        if (!isDrive) animation.pause();
+        return { time, id };
+    }
+    return null;
+}
+
+export async function stop(car: HTMLDivElement) {
+    const btnStart: HTMLButtonElement = car.querySelector(`.start`) as HTMLButtonElement;
+    const btnStop: HTMLButtonElement = car.querySelector(`.stop`) as HTMLButtonElement;
+    const carIMG: SVGSVGElement = car.querySelector('.car-img') as SVGSVGElement;
+    const id = Number(car.id);
+    const coordsCar = carIMG.getBoundingClientRect().x - carIMG.getBoundingClientRect().width;
+    btnStart.disabled = false;
+    btnStop.disabled = true;
+    const result = await runEngine(id, 'stopped');
+    if (result) {
+        animationBack(carIMG, coordsCar);
+    }
+}
+
+export async function startListenert(car: HTMLDivElement) {
     return async () => {
-        const flag = document.querySelector('.flag') as HTMLElement;
-        const coordsFlag = flag.getBoundingClientRect();
-        const flagEnd = coordsFlag.x - coordsFlag.width;
-        const coordsCar = car.getBoundingClientRect().x - car.getBoundingClientRect().width;
-        const thisBtn = btn;
-        thisBtn.disabled = true;
-        const result = await runEngine(id, status);
-        console.log(result);
-        if (result) {
-            if (status === 'started') {
-                const time = result.distance / result.velocity;
-                console.log(time);
-                const animation = animationForward(car, time, flagEnd);
-                const isDrive = await driveEngine(id);
-                console.log(isDrive);
-                if (!isDrive) animation.pause();
-            } else {
-                animationBack(car, coordsCar);
-            }
-        }
-        thisBtn.disabled = false;
+        start(car);
     };
 }
 
-export async function onRun(btn: HTMLButtonElement, id: number, status: 'started' | 'stopped', car: SVGSVGElement) {
-    btn.addEventListener('click', await run(btn, id, status, car));
+export async function stopListener(car: HTMLDivElement) {
+    return async () => {
+        stop(car);
+    };
+}
+
+export async function onStart(car: HTMLDivElement) {
+    const btn = car.querySelector('.start');
+    if (btn instanceof HTMLButtonElement) btn.addEventListener('click', await startListenert(car));
+}
+
+export async function onStop(car: HTMLDivElement) {
+    const btn = car.querySelector('.stop');
+    if (btn instanceof HTMLButtonElement) btn.addEventListener('click', await stopListener(car));
 }
