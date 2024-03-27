@@ -31,6 +31,10 @@
     background-color: var(--red);
 }
 
+#race {
+    background-color: var(--green);
+}
+
 #update:disabled {
     background-color: gray;
     color: black;

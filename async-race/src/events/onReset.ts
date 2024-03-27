@@ -1,4 +1,4 @@
-import { stop } from './onRun';
+import { stop } from '../controllers/stop';
 
 async function reset() {
     const cars = [...document.querySelectorAll('.car')] as HTMLDivElement[];

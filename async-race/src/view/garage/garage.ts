@@ -70,7 +70,7 @@ export async function createGaragePage() {
         wrapper.append(title);
         wrapper.append(subtitle);
         cars.forEach((car: Icar) => {
-            console.log(car);
+            // console.log(car);
             const carElement = addCar(car.name, car.color, car.id);
             wrapper.append(carElement);
         });

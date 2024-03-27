@@ -3,12 +3,8 @@ import { getWinnersPage } from '../../controllers/winnersPages';
 import { createCarImg } from '../cars/createCarImg';
 import { createFooter } from '../root/root';
 import './winners.css';
-
-interface IWinner {
-    id: number;
-    wins: number;
-    time: number;
-}
+import { IWinner } from '../../controllers/getWinners';
+import { getCar } from '../../controllers/getCar';
 
 function createTitle(totalCount: string | null): HTMLHeadingElement {
     const title = document.createElement('h1');
@@ -74,17 +70,20 @@ export async function createWinnersPage() {
         wrapper.append(winnersContent);
         wrapper.append(footer);
         main.append(wrapper);
-        winners.forEach((winner: IWinner) => {
-            console.log(winner);
-            createWinnerItem(winner.id, createCarImg('#FF0000', '70', '30', ''), 'TESLA', winner.wins, winner.time);
-        });
-        winners.forEach((winner: IWinner) => {
-            console.log(winner);
-            createWinnerItem(winner.id, createCarImg('#FF00EE', '70', '30', ''), 'TESLA', winner.wins, winner.time);
-        });
-        winners.forEach((winner: IWinner) => {
-            console.log(winner);
-            createWinnerItem(winner.id, createCarImg('#FF0022', '70', '30', ''), 'TESLA', winner.wins, winner.time);
+        const currentWinnersArr = winners.map((winner) => getCar(winner.id));
+        const currentWinners = await Promise.all(currentWinnersArr);
+        winners.forEach((winner: IWinner, index) => {
+            if (currentWinners) {
+                if (currentWinners[index]) {
+                    createWinnerItem(
+                        winner.id,
+                        createCarImg(`${currentWinners[index]!.color}`, '70', '30', ''),
+                        currentWinners[index]!.name,
+                        winner.wins,
+                        winner.time
+                    );
+                }
+            }
         });
     }
 }

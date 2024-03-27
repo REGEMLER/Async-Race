@@ -7,7 +7,7 @@ export async function driveEngine(id: number): Promise<boolean> {
         method: 'PATCH',
     });
     if (response.status === 500) {
-        console.error('Your car has been broken down!');
+        console.log('Your car has been broken down!');
         return false;
     }
     if (response.status === 200) {

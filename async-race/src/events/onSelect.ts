@@ -11,15 +11,15 @@ export async function onSelect(btn: HTMLButtonElement, id: number) {
         newUpdateBTN.classList.add('btn');
         newUpdateBTN.id = 'update';
         newUpdateBTN.textContent = 'Update';
-        if (updateName instanceof HTMLInputElement) {
+        if (updateName instanceof HTMLInputElement && car) {
             updateName.disabled = false;
             updateName.value = car.name;
         }
-        if (updateColor instanceof HTMLInputElement) {
+        if (updateColor instanceof HTMLInputElement && car) {
             updateColor.disabled = false;
             updateColor.value = car.color;
         }
-        if (updateBTN instanceof HTMLButtonElement) {
+        if (updateBTN instanceof HTMLButtonElement && car) {
             updateBTN.replaceWith(newUpdateBTN);
             newUpdateBTN.addEventListener('click', onUpdate(car.id));
         }
