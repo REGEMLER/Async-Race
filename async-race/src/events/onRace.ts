@@ -8,16 +8,20 @@ import { updateWinner } from '../controllers/updateWinner';
 async function race() {
     const cars = [...document.querySelectorAll('.car')] as HTMLDivElement[];
     const requests = cars.map((car) => start(car));
-    const result = await Promise.any(requests);
-    if (result) {
-        const winCar = await getCar(result.id);
-        const winTime = Math.floor(result.time) / 1000;
+    const results = await Promise.all(requests);
+    const resultsFiltered = results.filter((item) => item?.isDrive);
+    const bestResult = resultsFiltered.sort((a, b) => a!.time - b!.time)[0];
+    console.log(resultsFiltered);
+    console.log(bestResult);
+    if (bestResult) {
+        const winCar = await getCar(bestResult.id);
+        const winTime = Math.floor(bestResult.time) / 1000;
         const winMessage = `${winCar!.name} win for ${winTime} seconds`;
         const modalHeader = createModal(winMessage);
         setTimeout(() => {
             modalHeader.remove();
             document.body.style.overflowY = '';
-        }, 5000);
+        }, 3000);
         const responseWinners = await fetch(`http://127.0.0.1:3000/winners`);
         const allWinners: IWinner[] = await responseWinners.json();
         const findWinner = allWinners.find((item) => item.id === winCar!.id);

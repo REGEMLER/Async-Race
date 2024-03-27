@@ -1,8 +1,8 @@
+import './winners.css';
 import { getWinners } from '../../controllers/getWinners';
 import { getWinnersPage } from '../../controllers/winnersPages';
 import { createCarImg } from '../cars/createCarImg';
 import { createFooter } from '../root/root';
-import './winners.css';
 import { IWinner } from '../../controllers/getWinners';
 import { getCar } from '../../controllers/getCar';
 
@@ -73,17 +73,13 @@ export async function createWinnersPage() {
         const currentWinnersArr = winners.map((winner) => getCar(winner.id));
         const currentWinners = await Promise.all(currentWinnersArr);
         winners.forEach((winner: IWinner, index) => {
-            if (currentWinners) {
-                if (currentWinners[index]) {
-                    createWinnerItem(
-                        winner.id,
-                        createCarImg(`${currentWinners[index]!.color}`, '70', '30', ''),
-                        currentWinners[index]!.name,
-                        winner.wins,
-                        winner.time
-                    );
-                }
-            }
+            createWinnerItem(
+                winner.id,
+                createCarImg(`${currentWinners[index]!.color}`, '70', '30', ''),
+                currentWinners[index]!.name,
+                winner.wins,
+                winner.time
+            );
         });
     }
 }

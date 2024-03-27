@@ -44,7 +44,7 @@ export async function start(car: HTMLDivElement) {
         const animation = animationForward(carIMG, time, flagEnd);
         const isDrive = await driveEngine(id);
         if (!isDrive) animation.pause();
-        return { time, id };
+        return { time, id, isDrive };
     }
     return null;
 }
