@@ -1,6 +1,8 @@
 import { createWinnersPage } from '../view/winners/winners';
 import { getWinners } from './getWinners';
 
+const MAXCOUNT: number = 10;
+
 export function getWinnersPage() {
     const page = localStorage.getItem('winnerPage');
     if (page) return page;
@@ -10,7 +12,7 @@ export function getWinnersPage() {
 export async function isLastWinnerpage() {
     const currentPage = getWinnersPage();
     const { totalCount } = await getWinners();
-    const totalPages = Math.ceil(Number(totalCount) / 10);
+    const totalPages = Math.ceil(Number(totalCount) / MAXCOUNT);
     if (Number(currentPage) >= totalPages) {
         return true;
     }

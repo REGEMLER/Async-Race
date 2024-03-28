@@ -20,24 +20,23 @@
     gap: 10px;
 }
 
+#race,
 #create,
 #update,
 #generate {
     background-color: var(--green);
 }
 
-#race,
 #reset {
     background-color: var(--red);
 }
 
-#race {
-    background-color: var(--green);
-}
-
+#race:disabled,
+#reset:disabled,
 #update:disabled {
     background-color: gray;
     color: black;
+    cursor: auto;
 }
 
 #generate {

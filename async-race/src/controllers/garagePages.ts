@@ -1,6 +1,8 @@
 import { createGaragePage } from '../view/garage/garage';
 import { getCars } from './getCars';
 
+const MAXCOUNT: number = 7;
+
 export function getGaragePage() {
     const page = localStorage.getItem('garagePage');
     if (page) return page;
@@ -10,7 +12,7 @@ export function getGaragePage() {
 export async function isLastpage() {
     const currentPage = getGaragePage();
     const { totalCount } = await getCars();
-    const totalPages = Math.ceil(Number(totalCount) / 7);
+    const totalPages = Math.ceil(Number(totalCount) / MAXCOUNT);
     if (Number(currentPage) >= totalPages) {
         return true;
     }

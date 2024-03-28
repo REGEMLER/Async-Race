@@ -38,7 +38,7 @@ function createFormFuild(): HTMLDivElement {
         </div>
         <div class="form-item">
             <button class="btn" id="race">Race</button>
-            <button class="btn" id="reset">Reset</button>
+            <button class="btn" id="reset" disabled>Reset</button>
             <button class="btn" id="generate">Generate Cars</button>
         </div>`;
     form.innerHTML = inner;

@@ -6,6 +6,10 @@ import { createWinner } from '../controllers/createWinner';
 import { updateWinner } from '../controllers/updateWinner';
 
 async function race() {
+    const resetBTN = document.getElementById('reset') as HTMLButtonElement;
+    resetBTN.disabled = false;
+    const raceBTN = document.getElementById('race') as HTMLButtonElement;
+    raceBTN.disabled = true;
     const cars = [...document.querySelectorAll('.car')] as HTMLDivElement[];
     const requests = cars.map((car) => start(car));
     const results = await Promise.all(requests);
