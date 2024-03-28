@@ -1,3 +1,4 @@
+import { getOrder, getSort } from '../events/onSort';
 import { createWinnersPage } from '../view/winners/winners';
 import { getWinners } from './getWinners';
 
@@ -11,7 +12,9 @@ export function getWinnersPage() {
 
 export async function isLastWinnerpage() {
     const currentPage = getWinnersPage();
-    const { totalCount } = await getWinners();
+    const sort = getSort();
+    const order = getOrder();
+    const { totalCount } = await getWinners(sort, order);
     const totalPages = Math.ceil(Number(totalCount) / MAXCOUNT);
     if (Number(currentPage) >= totalPages) {
         return true;

@@ -42,25 +42,26 @@
 
 .winner-item1 {
     flex-basis: 10%;
-    outline: 1px solid green;
 }
 
 .winner-item2 {
     flex-basis: 10%;
-    outline: 1px solid green;
 }
 
 .winner-item3 {
     flex-basis: 35%;
-    outline: 1px solid green;
 }
 
 .winner-item4 {
     flex-basis: 12%;
-    outline: 1px solid green;
 }
 
 .winner-item5 {
     flex-basis: 33%;
-    outline: 1px solid green;
+}
+
+.wins,
+.time,
+.num {
+    cursor: pointer;
 }
