@@ -2,8 +2,14 @@ import './garage.css';
 import { getCars } from '../../controllers/getCars';
 import { addCar } from '../cars/addCar';
 import { onCreate } from '../../events/onCreate';
-import { createFooter } from '../root/root';
-import { getGaragePage } from '../../controllers/garagePages';
+import { createFooter } from '../footer/footer';
+import {
+    decreaseGaragePage,
+    getGaragePage,
+    increaseGaragePage,
+    isFirstPage,
+    isLastpage,
+} from '../../controllers/garagePages';
 import { onPrev } from '../../events/onPrev';
 import { onNext } from '../../events/onNext';
 import { onGenerate } from '../../events/onGenerate';
@@ -65,7 +71,7 @@ export async function createGaragePage() {
         const form = createFormFuild();
         const title = createTitle(totalCount);
         const subtitle = createSubtitle();
-        const footer = await createFooter();
+        const footer = await createFooter(isFirstPage, isLastpage);
         wrapper.append(form);
         wrapper.append(title);
         wrapper.append(subtitle);
@@ -77,8 +83,8 @@ export async function createGaragePage() {
         wrapper.append(footer);
         main.append(wrapper);
         onCreate();
-        onPrev();
-        onNext();
+        onPrev(decreaseGaragePage);
+        onNext(increaseGaragePage);
         onGenerate();
         onRace();
         onReset();

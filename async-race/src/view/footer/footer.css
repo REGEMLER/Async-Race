@@ -1,0 +1,15 @@
+.prev {
+    background-color: var(--red);
+    color: white;
+}
+
+.next {
+    background-color: var(--green);
+    color: white;
+}
+
+.prev:disabled,
+.next:disabled {
+    background-color: gray;
+    color: black;
+}

@@ -1,10 +1,18 @@
 import './winners.css';
 import { getWinners } from '../../controllers/getWinners';
-import { getWinnersPage } from '../../controllers/winnersPages';
+import {
+    decreaseWinnerPage,
+    getWinnersPage,
+    increaseWinnerPage,
+    isFirstWinnerPage,
+    isLastWinnerpage,
+} from '../../controllers/winnersPages';
 import { createCarImg } from '../cars/createCarImg';
-import { createFooter } from '../root/root';
+import { createFooter } from '../footer/footer';
 import { IWinner } from '../../controllers/getWinners';
 import { getCar } from '../../controllers/getCar';
+import { onPrev } from '../../events/onPrev';
+import { onNext } from '../../events/onNext';
 
 function createTitle(totalCount: string | null): HTMLHeadingElement {
     const title = document.createElement('h1');
@@ -64,7 +72,7 @@ export async function createWinnersPage() {
         const title = createTitle(totalCount);
         const subtitle = createSubtitle();
         const winnersContent = createTable();
-        const footer = await createFooter();
+        const footer = await createFooter(isFirstWinnerPage, isLastWinnerpage);
         wrapper.append(title);
         wrapper.append(subtitle);
         wrapper.append(winnersContent);
@@ -82,4 +90,6 @@ export async function createWinnersPage() {
             );
         });
     }
+    onPrev(decreaseWinnerPage);
+    onNext(increaseWinnerPage);
 }

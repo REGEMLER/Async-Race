@@ -27,22 +27,6 @@
     background-color: var(--red);
 }
 
-.prev {
-    background-color: var(--red);
-    color: white;
-}
-
-.next {
-    background-color: var(--green);
-    color: white;
-}
-
-.prev:disabled,
-.next:disabled {
-    background-color: gray;
-    color: black;
-}
-
 @media screen and (max-width: 768x){
     #header {
         max-width: 50%;
