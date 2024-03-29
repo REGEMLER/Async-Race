@@ -1,5 +1,5 @@
 import './garage.css';
-import { getCars } from '../../controllers/getCars';
+import { getCars, Icar } from '../../controllers/getCars';
 import { addCar } from '../cars/addCar';
 import { onCreate } from '../../events/onCreate';
 import { createFooter } from '../footer/footer';
@@ -16,16 +16,10 @@ import { onGenerate } from '../../events/onGenerate';
 import { onRace } from '../../events/onRace';
 import { onReset } from '../../events/onReset';
 
-interface Icar {
-    id: number;
-    name: string;
-    color: string;
-}
-
 function createFormFuild(): HTMLDivElement {
-    const form = document.createElement('div');
+    const form: HTMLDivElement = document.createElement('div');
     form.classList.add('form');
-    const inner = `
+    const inner: string = `
         <div class="form-item">
             <input type="text" class="input-text" id="createName"/>
             <input type="color" class="input-color" id="createColor"/>
@@ -45,8 +39,8 @@ function createFormFuild(): HTMLDivElement {
     return form;
 }
 
-function createTitle(totalCount: string | null): HTMLHeadingElement {
-    const title = document.createElement('h1');
+function createTitle(totalCount: string): HTMLHeadingElement {
+    const title: HTMLHeadingElement = document.createElement('h1');
     title.classList.add('title');
     title.classList.add('garage-title');
     title.textContent = `Garage (${totalCount})`;
@@ -54,30 +48,27 @@ function createTitle(totalCount: string | null): HTMLHeadingElement {
 }
 
 function createSubtitle(): HTMLHeadingElement {
-    const page = getGaragePage();
-    const subtitle = document.createElement('h2');
+    const page: string = getGaragePage();
+    const subtitle: HTMLHeadingElement = document.createElement('h2');
     subtitle.classList.add('subtitle');
     subtitle.textContent = `Page #${page}`;
     return subtitle;
 }
 
-export async function createGaragePage() {
-    const main = document.getElementById('main');
+export async function createGaragePage(): Promise<void> {
+    const main: HTMLElement | null = document.getElementById('main');
     if (main) {
         main.innerHTML = '';
-        const wrapper = document.createElement('div');
+        const wrapper: HTMLDivElement = document.createElement('div');
         wrapper.classList.add('garage');
         const { cars, totalCount } = await getCars();
-        const form = createFormFuild();
-        const title = createTitle(totalCount);
-        const subtitle = createSubtitle();
-        const footer = await createFooter(isFirstPage, isLastpage);
-        wrapper.append(form);
-        wrapper.append(title);
-        wrapper.append(subtitle);
+        const form: HTMLDivElement = createFormFuild();
+        const title: HTMLHeadingElement = createTitle(totalCount);
+        const subtitle: HTMLHeadingElement = createSubtitle();
+        const footer: HTMLElement = await createFooter(isFirstPage, isLastpage);
+        wrapper.append(form, title, subtitle);
         cars.forEach((car: Icar) => {
-            // console.log(car);
-            const carElement = addCar(car.name, car.color, car.id);
+            const carElement: HTMLDivElement = addCar(car.name, car.color, car.id);
             wrapper.append(carElement);
         });
         wrapper.append(footer);

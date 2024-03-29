@@ -12,10 +12,10 @@ export function getOrder(): string {
     return 'ASC';
 }
 
-function sort(event: Event) {
+function sort(event: Event): void {
     const target = event.target;
-    const currentOrder = getOrder();
-    const newOrder = currentOrder === 'ASC' ? 'DESC' : 'ASC';
+    const currentOrder: string = getOrder();
+    const newOrder: 'ASC' | 'DESC' = currentOrder === 'ASC' ? 'DESC' : 'ASC';
     if (target instanceof HTMLDivElement) {
         if (target.classList.contains('wins')) {
             localStorage.setItem('sort', 'wins');
@@ -29,7 +29,7 @@ function sort(event: Event) {
     }
 }
 
-export function onSort() {
+export function onSort(): void {
     const fuild = document.querySelector('.table-header');
     if (fuild) {
         fuild.addEventListener('click', sort);

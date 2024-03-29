@@ -1,6 +1,6 @@
 import { updateCar } from '../controllers/updateCar';
 
-export function onUpdate(id: number) {
+export function onUpdate(id: number): () => void {
     return () => {
         const updateName = document.getElementById('updateName');
         const updateColor = document.getElementById('updateColor');

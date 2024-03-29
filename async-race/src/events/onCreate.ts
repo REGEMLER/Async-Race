@@ -1,7 +1,7 @@
 import { createCar } from '../controllers/createCar';
 
-export function onCreate() {
-    const btn = document.getElementById('create');
+export function onCreate(): void {
+    const btn: HTMLElement | null = document.getElementById('create');
     if (btn instanceof HTMLButtonElement) {
         btn.addEventListener('click', () => {
             const inputName = document.getElementById('createName');

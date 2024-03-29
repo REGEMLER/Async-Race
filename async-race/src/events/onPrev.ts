@@ -1,4 +1,4 @@
-export function onPrev(cb: () => void) {
+export function onPrev(cb: () => void): void {
     const footer = document.querySelector('footer');
     if (footer) {
         const prevBTN = footer.querySelector('.prev');

@@ -22,7 +22,7 @@ export async function stop(car: HTMLDivElement) {
     const btnStop: HTMLButtonElement = car.querySelector(`.stop`) as HTMLButtonElement;
     const carIMG: SVGSVGElement = car.querySelector('.car-img') as SVGSVGElement;
     const id = Number(car.id);
-    const coordsCar = carIMG.getBoundingClientRect().x - carIMG.getBoundingClientRect().width;
+    const coordsCar: number = carIMG.getBoundingClientRect().x - carIMG.getBoundingClientRect().width;
     btnStart.disabled = false;
     btnStop.disabled = true;
     const result = await runEngine(id, 'stopped');

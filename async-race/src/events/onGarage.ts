@@ -1,6 +1,6 @@
 import { createGaragePage } from '../view/garage/garage';
 
-export function onGarage() {
+export function onGarage(): void {
     const btn = document.getElementById('garage');
     if (btn instanceof HTMLButtonElement) {
         btn.addEventListener('click', createGaragePage);

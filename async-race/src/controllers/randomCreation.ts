@@ -48,17 +48,17 @@ const CARS: IcarModel[] = [
     },
 ];
 
-function generateName() {
-    const firstNumber = Math.floor(0 + Math.random() * (9 + 1 - 0));
-    const secondNumber = Math.floor(0 + Math.random() * (9 + 1 - 0));
-    const carName = CARS[firstNumber].name;
-    const carType = CARS[firstNumber].type[secondNumber];
+function generateName(): string {
+    const firstNumber: number = Math.floor(0 + Math.random() * (9 + 1 - 0));
+    const secondNumber: number = Math.floor(0 + Math.random() * (9 + 1 - 0));
+    const carName: string = CARS[firstNumber].name;
+    const carType: string = CARS[firstNumber].type[secondNumber];
     return `${carName} ${carType}`;
 }
 
-function generateColor() {
-    let color = '#';
-    const HEX = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+function generateColor(): string {
+    let color: string = '#';
+    const HEX: string[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
     for (let i = 0; i < 6; i += 1) {
         const item = HEX.sort(() => Math.random() - 0.5);
         color += item[0];
@@ -66,11 +66,11 @@ function generateColor() {
     return color;
 }
 
-export async function generateCars() {
+export async function generateCars(): Promise<void> {
     const body = [];
     for (let i = 0; i < 99; i += 1) {
-        const name = generateName();
-        const color = generateColor();
+        const name: string = generateName();
+        const color: string = generateColor();
         body.push({ name, color });
     }
     const requests = body.map((car) =>
@@ -83,9 +83,6 @@ export async function generateCars() {
             }),
         })
     );
-    // Promise.all(requests).then(() => {
-    //     createGaragePage();
-    // });
     await Promise.all(requests);
     await createGaragePage();
 }

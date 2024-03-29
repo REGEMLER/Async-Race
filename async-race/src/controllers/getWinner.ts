@@ -1,7 +1,7 @@
 import { IWinner } from './getWinners';
 
-export async function getWinner(id: number) {
-    const response = await fetch(`http://127.0.0.1:3000/winners/${id}`, {
+export async function getWinner(id: number): Promise<IWinner | null> {
+    const response: Response = await fetch(`http://127.0.0.1:3000/winners/${id}`, {
         method: 'GET',
         headers: { Accept: 'application/json' },
     });
@@ -9,6 +9,6 @@ export async function getWinner(id: number) {
         const winner: IWinner = await response.json();
         return winner;
     }
-    console.log('404 NOT Found');
+    console.log('Error! There is no winner!');
     return null;
 }

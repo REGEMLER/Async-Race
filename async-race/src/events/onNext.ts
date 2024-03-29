@@ -1,4 +1,4 @@
-export function onNext(cb: () => Promise<void>) {
+export function onNext(cb: () => Promise<void>): void {
     const footer = document.querySelector('footer');
     if (footer) {
         const nextBTN = footer.querySelector('.next');

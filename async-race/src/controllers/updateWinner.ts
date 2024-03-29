@@ -10,6 +10,6 @@ export async function updateWinner(id: number, wins: number, time: number) {
     if (response.status === 200) {
         console.log('The winner was successfully updated');
     } else {
-        console.log('The winner was not successfully updated');
+        console.log('Error! The winner was not successfully updated');
     }
 }

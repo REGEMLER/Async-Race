@@ -16,7 +16,7 @@ import { onNext } from '../../events/onNext';
 import { getOrder, getSort, onSort } from '../../events/onSort';
 
 function createTitle(totalCount: string | null): HTMLHeadingElement {
-    const title = document.createElement('h1');
+    const title: HTMLHeadingElement = document.createElement('h1');
     title.classList.add('title');
     title.classList.add('winners-title');
     title.textContent = `Winners (${totalCount})`;
@@ -24,19 +24,19 @@ function createTitle(totalCount: string | null): HTMLHeadingElement {
 }
 
 function createSubtitle(): HTMLHeadingElement {
-    const page = getWinnersPage();
-    const subtitle = document.createElement('h2');
+    const page: string = getWinnersPage();
+    const subtitle: HTMLHeadingElement = document.createElement('h2');
     subtitle.classList.add('subtitle');
     subtitle.textContent = `Page #${page}`;
     return subtitle;
 }
 
-function createTable(firstSort: string, secondSort: string, thirdSort: string) {
-    const winnersTable = document.createElement('div');
+function createTable(firstSort: string, secondSort: string, thirdSort: string): HTMLDivElement {
+    const winnersTable: HTMLDivElement = document.createElement('div');
     winnersTable.classList.add('winners-table');
-    const tableHeader = document.createElement('div');
+    const tableHeader: HTMLDivElement = document.createElement('div');
     tableHeader.classList.add('table-header');
-    const headerInner = `
+    const headerInner: string = `
     <div class="winner-item1 num">№ ${firstSort}</div>
     <div class="winner-item2">Car</div>
     <div class="winner-item3">Name</div>
@@ -48,11 +48,11 @@ function createTable(firstSort: string, secondSort: string, thirdSort: string) {
     return winnersTable;
 }
 
-function createWinnerItem(num: number, img: string, car: string, wins: number, time: number) {
-    const winnersTable = document.querySelector('.winners-table');
-    const winnersItem = document.createElement('div');
+function createWinnerItem(num: number, img: string, car: string, wins: number, time: number): void {
+    const winnersTable: Element | null = document.querySelector('.winners-table');
+    const winnersItem: HTMLDivElement = document.createElement('div');
     winnersItem.classList.add('table-item');
-    const inner = `
+    const inner: string = `
     <div class="winner-item1">${num}</div>
     <div class="winner-item2">${img}</div>
     <div class="winner-item3">${car}</div>
@@ -63,27 +63,24 @@ function createWinnerItem(num: number, img: string, car: string, wins: number, t
     if (winnersTable) winnersTable.append(winnersItem);
 }
 
-export async function createWinnersPage() {
-    const main = document.getElementById('main');
+export async function createWinnersPage(): Promise<void> {
+    const main: HTMLElement | null = document.getElementById('main');
     if (main) {
         main.innerHTML = '';
-        const wrapper = document.createElement('div');
+        const wrapper: HTMLDivElement = document.createElement('div');
         wrapper.classList.add('winners');
-        const sort = getSort();
-        const order = getOrder();
-        const arrow = order === 'DESC' ? '↑' : '↓';
-        const firstArrow = sort === 'id' ? arrow : '';
-        const secondArrow = sort === 'wins' ? arrow : '';
-        const thirdArrow = sort === 'time' ? arrow : '';
+        const sort: string = getSort();
+        const order: string = getOrder();
+        const arrow: '↑' | '↓' = order === 'ASC' ? '↑' : '↓';
+        const firstArrow: '↑' | '↓' | '' = sort === 'id' ? arrow : '';
+        const secondArrow: '↑' | '↓' | '' = sort === 'wins' ? arrow : '';
+        const thirdArrow: '↑' | '↓' | '' = sort === 'time' ? arrow : '';
         const { winners, totalCount } = await getWinners(sort, order);
-        const title = createTitle(totalCount);
-        const subtitle = createSubtitle();
-        const winnersContent = createTable(firstArrow, secondArrow, thirdArrow);
-        const footer = await createFooter(isFirstWinnerPage, isLastWinnerpage);
-        wrapper.append(title);
-        wrapper.append(subtitle);
-        wrapper.append(winnersContent);
-        wrapper.append(footer);
+        const title: HTMLHeadingElement = createTitle(totalCount);
+        const subtitle: HTMLHeadingElement = createSubtitle();
+        const winnersContent: HTMLDivElement = createTable(firstArrow, secondArrow, thirdArrow);
+        const footer: HTMLElement = await createFooter(isFirstWinnerPage, isLastWinnerpage);
+        wrapper.append(title, subtitle, winnersContent, footer);
         main.append(wrapper);
         const currentWinnersArr = winners.map((winner) => getCar(winner.id));
         const currentWinners = await Promise.all(currentWinnersArr);

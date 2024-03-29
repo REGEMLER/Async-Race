@@ -4,19 +4,19 @@
 }
 
 #header {
-    max-width: 35%;
-    padding: 1rem;
+    max-width: 40%;
+    margin: 10px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 20px;
+    gap: 10px;
 }
 
 #main {
     max-width: 95%;
     margin: 10px auto;
     padding: 10px;
-    border: 2px solid salmon;
 }
 
 .header-btn {
@@ -25,10 +25,4 @@
 
 .header-btn-passive {
     background-color: var(--red);
-}
-
-@media screen and (max-width: 768x){
-    #header {
-        max-width: 50%;
-    }
 }

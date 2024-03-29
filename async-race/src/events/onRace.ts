@@ -5,7 +5,7 @@ import { IWinner } from '../controllers/getWinners';
 import { createWinner } from '../controllers/createWinner';
 import { updateWinner } from '../controllers/updateWinner';
 
-async function race() {
+async function race(): Promise<void> {
     const resetBTN = document.getElementById('reset') as HTMLButtonElement;
     resetBTN.disabled = false;
     const raceBTN = document.getElementById('race') as HTMLButtonElement;
@@ -15,8 +15,6 @@ async function race() {
     const results = await Promise.all(requests);
     const resultsFiltered = results.filter((item) => item?.isDrive);
     const bestResult = resultsFiltered.sort((a, b) => a!.time - b!.time)[0];
-    console.log(resultsFiltered);
-    console.log(bestResult);
     if (bestResult) {
         const winCar = await getCar(bestResult.id);
         const winTime = Math.floor(bestResult.time) / 1000;
@@ -39,7 +37,7 @@ async function race() {
     }
 }
 
-export function onRace() {
+export function onRace(): void {
     const btn = document.getElementById('race');
     if (btn) btn.addEventListener('click', race);
 }

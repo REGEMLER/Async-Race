@@ -1,17 +1,14 @@
-interface ICar {
-    id: number;
-    color: string;
-    name: string;
-}
-export async function getCar(id: number) {
-    const response = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
+import { Icar } from './getCars';
+
+export async function getCar(id: number): Promise<Icar | null> {
+    const response: Response = await fetch(`http://127.0.0.1:3000/garage/${id}`, {
         method: 'GET',
         headers: { Accept: 'application/json' },
     });
     if (response.status === 200) {
-        const car: ICar = await response.json();
+        const car: Icar = await response.json();
         return car;
     }
-    console.log('404 NOT Found');
+    console.log('Error! There is no car!');
     return null;
 }

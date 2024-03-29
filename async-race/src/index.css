@@ -34,21 +34,20 @@ body {
 .subtitle {
     max-width: 90%;
     margin: 10px auto; 
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: center;
     color: white;
 }
 
 .btn {
     display: block;
-    width: 180px;
+    width: 150px;
     margin: 10px auto;
-    height: 45px;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1.5rem;
+    height: 40px;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 1.3rem;
     font-weight: 700;
-    letter-spacing: 1px;
     text-align: center;
     color: white;
     cursor: pointer;
@@ -62,19 +61,12 @@ body {
 .input-text {
     display: block;
     max-width: 70%;
-    width: 250px;
-    height: 45px;
+    width: 200px;
+    height: 40px;
     background-color: white;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--green);
     transition: all linear .4s;
-}
-
-.input-text::placeholder {
-    width: 100%;
-    margin: 0 auto;
-    font-size: 1.4rem;
-    color: gray;
 }
 
 .input-text:focus {
@@ -88,8 +80,8 @@ body {
 
 .input-color {
     display: block;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
 }
 
 .footer {
@@ -101,9 +93,13 @@ body {
     gap: 10px;
 }
 
-@media screen and (max-width: 928px){
+@media screen and (max-width: 700px){
     .btn {
         font-size: 1.2rem;
         font-weight: 500;
+    }
+    .input-text {
+        max-width: 60%;
+        width: 150px;
     }
 }

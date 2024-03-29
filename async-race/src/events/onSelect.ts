@@ -1,7 +1,7 @@
 import { getCar } from '../controllers/getCar';
 import { onUpdate } from './onUpdate';
 
-export async function onSelect(btn: HTMLButtonElement, id: number) {
+export async function onSelect(btn: HTMLButtonElement, id: number): Promise<void> {
     const car = await getCar(id);
     btn.addEventListener('click', () => {
         const updateName = document.getElementById('updateName');

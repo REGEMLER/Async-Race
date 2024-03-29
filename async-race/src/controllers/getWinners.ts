@@ -6,13 +6,21 @@ export interface IWinner {
     time: number;
 }
 
-export async function getWinners(sort: string, order: string) {
-    const page = getWinnersPage();
+interface getWinnerResult {
+    winners: IWinner[];
+    totalCount: string;
+}
+
+export async function getWinners(sort: string, order: string): Promise<getWinnerResult> {
+    const page: string = getWinnersPage();
     const response = await fetch(`http://127.0.0.1:3000/winners?_page=${page}&_limit=10&_sort=${sort}&_order=${order}`);
     const winners: IWinner[] = await response.json();
-    let totalCount: string | null = '0';
+    let totalCount: string = '0';
     if (response.headers.has('X-Total-Count')) {
-        totalCount = response.headers.get('X-Total-Count');
+        const totalCountHeader: string | null = response.headers.get('X-Total-Count');
+        if (totalCountHeader) {
+            totalCount = totalCountHeader;
+        }
     }
     return { winners, totalCount };
 }

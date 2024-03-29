@@ -1,7 +1,8 @@
 import './modal.css';
-export function createModal(winMessage: string) {
+
+export function createModal(winMessage: string): HTMLElement {
     const root: HTMLElement | null = document.getElementById('root');
-    const modal = document.createElement('DIV');
+    const modal: HTMLElement = document.createElement('DIV');
     modal.classList.add('modal');
     modal.innerHTML = `
         <div class="modal_inner">${winMessage}</div>

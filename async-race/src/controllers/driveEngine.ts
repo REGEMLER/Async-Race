@@ -3,7 +3,7 @@ interface iResult {
 }
 
 export async function driveEngine(id: number): Promise<boolean> {
-    const response = await fetch(`http://127.0.0.1:3000/engine/?id=${id}&status=drive`, {
+    const response: Response = await fetch(`http://127.0.0.1:3000/engine/?id=${id}&status=drive`, {
         method: 'PATCH',
     });
     if (response.status === 500) {

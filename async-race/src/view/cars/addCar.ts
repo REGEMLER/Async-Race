@@ -1,13 +1,13 @@
+import './cars.css';
 import { onRemove } from '../../events/onRemove';
 import { onSelect } from '../../events/onSelect';
 import { onStart, onStop } from '../../events/onRun';
-import './cars.css';
 import { createCarImg } from './createCarImg';
 
 export function addCar(name: string, color: string, id: number): HTMLDivElement {
-    const car = document.createElement('div');
+    const car: HTMLDivElement = document.createElement('div');
     car.id = id.toString();
-    const flag = `<svg height="100px" width="100px" class="flag" version="1.1"" 
+    const flag: string = `<svg height="70px" width="80px" class="flag" version="1.1"" 
     viewBox="0 0 206.505 206.505" xml:space="preserve">
     <g>
    <path style="fill:#FF0000;" d="M167.069,16.354c-0.426,0.186-43.29,18.671-70.274-4.481c-31.021-26.619-60.722-0.2-61.012,0.072
@@ -19,7 +19,7 @@ export function addCar(name: string, color: string, id: number): HTMLDivElement 
 </svg>`;
     car.classList.add('car');
     const carIMG: string = createCarImg(color, '200', '80', 'car-img');
-    const inner = `
+    const inner: string = `
     <div class="line1">
         <button class="btn car-btn select">Select</button>
         <button class="btn car-btn remove">Remove</button>
@@ -33,9 +33,9 @@ export function addCar(name: string, color: string, id: number): HTMLDivElement 
     </div>
     `;
     car.innerHTML = inner;
-    const removeBtn = car.querySelector('.remove');
+    const removeBtn: Element | null = car.querySelector('.remove');
     if (removeBtn instanceof HTMLButtonElement) onRemove(removeBtn, id);
-    const selectBtn = car.querySelector('.select');
+    const selectBtn: Element | null = car.querySelector('.select');
     if (selectBtn instanceof HTMLButtonElement) onSelect(selectBtn, id);
     onStart(car);
     onStop(car);
