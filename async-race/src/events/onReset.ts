@@ -8,6 +8,7 @@ async function reset(): Promise<void> {
     const cars = [...document.querySelectorAll('.car')] as HTMLDivElement[];
     const requests = cars.map((car) => stop(car));
     await Promise.all(requests);
+    localStorage.setItem('reset', 'on');
 }
 
 export function onReset(): void {

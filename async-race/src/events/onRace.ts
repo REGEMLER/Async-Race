@@ -6,6 +6,7 @@ import { createWinner } from '../controllers/createWinner';
 import { updateWinner } from '../controllers/updateWinner';
 
 async function race(): Promise<void> {
+    localStorage.removeItem('reset');
     const resetBTN = document.getElementById('reset') as HTMLButtonElement;
     resetBTN.disabled = false;
     const raceBTN = document.getElementById('race') as HTMLButtonElement;
@@ -15,7 +16,8 @@ async function race(): Promise<void> {
     const results = await Promise.all(requests);
     const resultsFiltered = results.filter((item) => item?.isDrive);
     const bestResult = resultsFiltered.sort((a, b) => a!.time - b!.time)[0];
-    if (bestResult) {
+    console.log(bestResult);
+    if (bestResult && !localStorage.getItem('reset')) {
         const winCar = await getCar(bestResult.id);
         const winTime = Math.floor(bestResult.time) / 1000;
         const winMessage = `${winCar!.name} win for ${winTime} seconds`;
