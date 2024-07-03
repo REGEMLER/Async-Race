@@ -29,7 +29,7 @@ I have created a [SPA](https://en.wikipedia.org/wiki/Single-page_application) to
 - Display winning cars with their image, name, number of wins, and best time.
 - Pagination and sorting capabilities by wins and best times.
 
-# To run the application do next steps 
+# To run the application follow these steps
 - Use `node 14.x` or higher.
 - Clone this repo: `$ git clone https://github.com/mikhama/async-race-api.git`.
 - Go to downloaded folder: `$ cd async-race-api`.
