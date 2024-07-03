@@ -35,4 +35,4 @@ I have created a [SPA](https://en.wikipedia.org/wiki/Single-page_application) to
 - Go to downloaded folder: `$ cd async-race-api`.
 - Install dependencies: `$ npm install`.
 - Start server: `$ npm start`.
-- Enjoy the race [Here](https://en.wikipedia.org/wiki/Single-page_application)
+- Enjoy the race [Here](https://regemler.github.io/Async-Race/)
